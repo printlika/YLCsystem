@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游客人数</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #cccccc;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+            min-height: 400px;
+            background: #ffffff;
+        }
+        footer {
+            background: #e8491d;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .tickets-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .tickets-table th, .tickets-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .tickets-table th {
+            background-color: #50b3a2;
+            color: white;
+        }
+        .tickets-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .tickets-table tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>票价</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="highlight"><a href="shouye.html">首页</a></li>
+                    <li><a href="youlesheshi.html">娱乐设施</a></li></a></li>
+                    <li><a href="piaojia.html">票价</a></li>
+                    <li><a href="youkerenshu.html">游客人数</a></li>
+                    <li><a href="lianxiwomen.html">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content">
+        <div class="container">
+            <h1>游客人数</h1>
+            <table class="tickets-table">
+                <tr>
+                    <th>游客类型</th>
+                    <th>票价</th>
+                    <th>数量</th>
+                    
+                </tr>
+                <tr>
+                    <td>成人</td>
+                    <td>100人</td>
+                    <td>100张</td>
+                    
+                </tr>
+                <tr>
+                    <td>儿童</td>
+                    <td>100人</td>
+                    <td>100张</td>
+                    
+                </tr>
+                <!-- 更多门票数据 -->
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>游乐园</p> &copy; 2024</p>
+    </footer>
+</body>
+</html>

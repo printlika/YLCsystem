@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游客管理</title>
+    <style id="dynamic-styles">
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #50b3a2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+        header a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #cccccc;
+            font-weight: bold;
+        }
+        .content {
+            padding: 20px;
+            min-height: 400px;
+            background: #ffffff;
+        }
+        footer {
+            background: #e8491d;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>游乐园管理系统</h1>
+            <nav>
+                <ul>
+                    <li><a href="shouye.html">首页</a></li>
+                    <li><a href="sheshiguanli.html">娱乐设施管理</a></li>
+                    <li class="highlight"><a href="piaowuguanli.html">票务管理</a></li>
+                    <li><a href="youkeguanli.html">游客管理</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="content">
+        <div class="container">
+            <h1>游客管理</h1>
+            <table class="visitors-table">
+                <tr>
+                    <th>门票类型</th>
+                    <th>价格</th>
+                    <th>数量</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>成人票</td>
+                    <td>30</td>
+                    <td>100</td>
+                    <td><button onclick="editVisitor(this)">编辑</button> | <button onclick="deleteVisitor(this)">删除</button></td>
+                </tr>
+                <tr>
+                    <td>儿童票</td>
+                    <td>12</td>
+                    <td>100</td>
+                    <td><button onclick="editVisitor(this)">编辑</button> | <button onclick="deleteVisitor(this)">删除</button></td>
+                </tr>
+                <!-- 更多游客数据 -->
+            </table>
+        </div>
+    </div>
+    <footer>
+        <p>游乐园管理系统 &copy; 2024</p>
+    </footer>
+
+    <script>
+        function editVisitor(button) {
+            // 获取当前行的数据
+            const row = button.closest('tr');
+            const ticketType = row.cells[0].textContent;
+            const price = row.cells[1].textContent;
+            const quantity = row.cells[2].textContent;
+
+            // 显示编辑表单
+            const editForm = document.createElement('src\components\TicketManagement.vue');
+            editForm.innerHTML = `
+                <label for="ticketType">门票类型:</label>
+                <input type="text" id="ticketType" name="ticketType" value="${ticketType}">
+                <br>
+                <label for="price">价格:</label>
+                <input type="number" id="price" name="price" value="${price}">
+                <br>
+                <label for="quantity">数量:</label>
+                <input type="number" id="quantity" name="quantity" value="${quantity}">
+                <br>
+                <button type="button" onclick="saveChanges(this)">保存</button>
+                <button type="button" onclick="cancelEdit(this)">取消</button>
+            `;
+            row.innerHTML = '';
+            row.appendChild(editForm);
+        }
+
+        function saveChanges(form) {
+            // 获取表单数据
+            const ticketType = form.parentNode.querySelector('#ticketType').value;
+            const price = form.parentNode.querySelector('#price').value;
+            const quantity = form.parentNode.querySelector('#quantity').value;
+
+            // 更新表格数据
+            const row = form.closest('tr');
+            row.cells[0].textContent = ticketType;
+            row.cells[1].textContent = price;
+            row.cells[2].textContent = quantity;
+
+            // 添加操作按钮
+            const actionCell = row.cells[3];
+            actionCell.innerHTML = `<button onclick="editVisitor(this)">编辑</button> | <button onclick="deleteVisitor(this)">删除</button>`;
+        }
+
+        function cancelEdit(form) {
+            // 恢复原始表格数据
+            const row = form.closest('tr');
+            const ticketType = row.cells[0].textContent;
+            const price = row.cells[1].textContent;
+            const quantity = row.cells[2].textContent;
+
+            // 添加操作按钮
+            const actionCell = row.cells[3];
+            actionCell.innerHTML = `<button onclick="editVisitor(this)">编辑</button> | <button onclick="deleteVisitor(this)">删除</button>`;
+        }
+
+        function deleteVisitor(button) {
+            // 确认删除操作
+            if (confirm('确定要删除这条记录吗？')) {
+                const row = button.closest('tr');
+                row.parentNode.removeChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
